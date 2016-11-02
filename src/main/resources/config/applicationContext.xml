@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- 自动扫描的包注解 -->
+	<context:component-scan base-package="com">  
+  		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />  
+	</context:component-scan>
+
+	<!-- 数据库 -->
+	<import resource="classpath:config/dataSource.xml" />
+
+	<!-- 封装异常 -->
+	<bean id="exceptionHandler" class="com.fastjava.exception.ExceptionHandler">
+		<!-- 自定义返回错误信息 -->
+		<property name="message" value="请稍后再试！" />
+	</bean>
+	
+	<!-- 系统信息设置 -->
+	<bean class="com.fastjava.listener.SystemSet"></bean>
+	
+	<!-- 字典表
+	<bean class="com.fastjava.listener.SystemCode"></bean> -->
+	
+	<!-- log4j -->
+	<bean id="log4jInitialization"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="org.springframework.util.Log4jConfigurer" />
+		<property name="targetMethod" value="initLogging" />
+		<property name="arguments">
+			<list>
+				<value>classpath:config/log4j.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 定时任务 -->
+	<import resource="classpath:config/quartz.xml" />
+	
+	<!-- 安全框架 -->
+	<import resource="classpath:config/shiro.xml" />
+
+</beans>

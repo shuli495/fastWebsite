@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 实体声明，配置文件中不用写实体全路径，只写名就可以 -->
+	<typeAliases>
+		<package name="com.website.model.bo"/>
+	</typeAliases>
+	
+	<!-- 分页 -->
+	<plugins>
+        <plugin interceptor="com.fastjava.page.PageInterceptor" />
+    </plugins>
+     
+</configuration>
