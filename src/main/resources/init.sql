@@ -4,7 +4,6 @@ create database if not exists fastWebsite default charset utf8;
 -- ----------------------------
 -- Table structure for sys_code
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_code`;
 CREATE TABLE IF NOT EXISTS `sys_code` (
   `id` varchar(64) NOT NULL,
   `parent_id` varchar(64) DEFAULT NULL,
