@@ -19,7 +19,7 @@ public class SysCodeAction extends BaseAction<SysCodeService> {
 	 * 创建
 	 */
 	@RequestMapping(method=RequestMethod.POST)
-	public Result create(@RequestBody SysCodeBO bo) {
+	public Object create(@RequestBody SysCodeBO bo) {
 		if(VerifyUtils.isEmpty(bo.getId())) {
 			bo.setId(UUID.uuid());
 		}
@@ -32,7 +32,7 @@ public class SysCodeAction extends BaseAction<SysCodeService> {
 	 * 批量创建
 	 */
 	@RequestMapping(value="/batch",method=RequestMethod.POST)
-	public Result createBatch(@RequestBody List<SysCodeBO> boList) {
+	public Object createBatch(@RequestBody List<SysCodeBO> boList) {
 		if(boList.size() == 0) {
 			throw new ThrowPrompt("无创建内容！");
 		}
@@ -49,7 +49,7 @@ public class SysCodeAction extends BaseAction<SysCodeService> {
 	 * 更新
 	 */
 	@RequestMapping(method=RequestMethod.PUT)
-	public Result update(@RequestBody SysCodeBO bo) {
+	public Object update(@RequestBody SysCodeBO bo) {
 		this.service.baseUpdate(bo);
 		return success();
 	}
@@ -58,7 +58,7 @@ public class SysCodeAction extends BaseAction<SysCodeService> {
 	 * 批量更新
 	 */
 	@RequestMapping(value="/batch",method=RequestMethod.PUT)
-	public Result updateBatch(@RequestBody List<SysCodeBO> boList) {
+	public Object updateBatch(@RequestBody List<SysCodeBO> boList) {
 		if(boList.size() == 0) {
 			throw new ThrowPrompt("无修改内容！");
 		}
@@ -71,7 +71,7 @@ public class SysCodeAction extends BaseAction<SysCodeService> {
 	 * 物理删除
 	 */
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-	public Result delete(@PathVariable String id) {
+	public Object delete(@PathVariable String id) {
 		this.service.delete(id);
 		return success();
 	}
@@ -80,7 +80,7 @@ public class SysCodeAction extends BaseAction<SysCodeService> {
 	 * 批量物理删除
 	 */
 	@RequestMapping(value="/batch",method=RequestMethod.DELETE)
-	public Result deleteBatch(@RequestBody List<String> idList) {
+	public Object deleteBatch(@RequestBody List<String> idList) {
 		if(idList.size() == 0) {
 			throw new ThrowPrompt("无删除内容！");
 		}
@@ -93,7 +93,7 @@ public class SysCodeAction extends BaseAction<SysCodeService> {
 	 * id查询详情
 	 */
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-	public Result findById(@PathVariable String id) {
+	public Object findById(@PathVariable String id) {
 		return success(this.service.baseFind(id));
 	}
 
@@ -101,7 +101,7 @@ public class SysCodeAction extends BaseAction<SysCodeService> {
 	 * 列表查询 and条件
 	 */
 	@RequestMapping(method=RequestMethod.GET)
-	public Result list(@RequestParam(value="parentId", required=false) String parentId,
+	public Object list(@RequestParam(value="parentId", required=false) String parentId,
 			@RequestParam(value="groupId", required=false) String groupId) {
 		SysCodeBO bo = new SysCodeBO();
 		bo.setParentId(parentId);
@@ -114,7 +114,7 @@ public class SysCodeAction extends BaseAction<SysCodeService> {
 	 * 分页查询 and条件
 	 */
 	@RequestMapping(value="/page",method=RequestMethod.POST)
-	public Result page(@RequestBody SysCodeBO bo) {
+	public Object page(@RequestBody SysCodeBO bo) {
 		return success(this.service.baseQueryPageByAnd(bo));
 	}
 
