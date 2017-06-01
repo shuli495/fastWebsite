@@ -46,7 +46,7 @@
     </logger>
     
     <!-- 定时任务日志包 -->
-    <logger name="com.fastjava.quartz">
+    <logger name="com.fastjavaframework.quartz">
 		<param name="Level" value="INFO" />
         <appender-ref ref="QUARTZ_LOG_FILE" />
     </logger>

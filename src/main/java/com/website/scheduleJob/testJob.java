@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fastjava.quartz.QuartzJob;
-import com.fastjava.quartz.ScheduleJobBean;
+import com.fastjavaframework.quartz.QuartzJob;
+import com.fastjavaframework.quartz.ScheduleJobBean;
 
 @Component
 public class testJob extends QuartzJob {

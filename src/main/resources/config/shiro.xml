@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
 	<!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的ShiroDbRealm.java -->
-	<bean id="myRealm" class="com.fastjava.interceptor.SecurityManager" />
+	<bean id="myRealm" class="com.fastjavaframework.interceptor.SecurityManager" />
 
 	<!-- Shiro默认会使用Servlet容器的Session,可通过sessionMode属性来指定使用Shiro原生Session -->
 	<!-- 即<property name="sessionMode" value="native"/>,详细说明见官方文档 -->

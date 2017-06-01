@@ -1,6 +1,6 @@
 package com.website.model.bo;
 
-import com.fastjava.base.BaseBean;
+import com.fastjavaframework.base.BaseBean;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;

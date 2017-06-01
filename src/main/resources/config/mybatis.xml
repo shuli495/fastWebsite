@@ -8,7 +8,7 @@
 	
 	<!-- 分页 -->
 	<plugins>
-        <plugin interceptor="com.fastjava.page.PageInterceptor" />
+        <plugin interceptor="com.fastjavaframework.page.PageInterceptor" />
     </plugins>
      
 </configuration>

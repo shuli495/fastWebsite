@@ -28,7 +28,7 @@
 	</bean>
 
 	<!-- 全局配置文件 -->
-	<bean class="com.fastjava.Setting">
+	<bean class="com.fastjavaframework.Setting">
 		<property name="properties" ref="configProperties" />
 	</bean>
 
@@ -36,13 +36,13 @@
 	<import resource="classpath:config/dataSource.xml" />
 
 	<!-- 封装异常 -->
-	<bean id="exceptionHandler" class="com.fastjava.exception.ExceptionHandler">
+	<bean id="exceptionHandler" class="com.fastjavaframework.exception.ExceptionHandler">
 		<!-- 自定义返回错误信息 -->
 		<property name="message" value="请稍后再试！" />
 	</bean>
 	
 	<!-- 系统信息设置 -->
-	<bean class="com.fastjava.listener.SystemSet"></bean>
+	<bean class="com.fastjavaframework.listener.SystemSet"></bean>
 	
 	<!-- 字典表
 	<bean class="com.fastjava.listener.SystemCode"></bean> -->

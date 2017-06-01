@@ -15,8 +15,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import com.fastjava.exception.ThrowPrompt;
-import com.fastjava.util.MD5Util;
+import com.fastjavaframework.exception.ThrowPrompt;
+import com.fastjavaframework.util.MD5Util;
 
 /**
  * 上传文件监听

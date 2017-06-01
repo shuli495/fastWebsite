@@ -1,10 +1,9 @@
 package com.website.action;
 
-import com.fastjava.base.BaseAction;
-import com.fastjava.exception.ThrowPrompt;
-import com.fastjava.response.Result;
-import com.fastjava.util.UUID;
-import com.fastjava.util.VerifyUtils;
+import com.fastjavaframework.base.BaseAction;
+import com.fastjavaframework.exception.ThrowPrompt;
+import com.fastjavaframework.util.UUID;
+import com.fastjavaframework.util.VerifyUtils;
 import com.website.model.bo.SysCodeBO;
 import com.website.service.SysCodeService;
 import org.springframework.web.bind.annotation.*;

@@ -9,12 +9,12 @@
 	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="startupDelay" value="10" />	<!-- 延迟启动(秒) -->
 		<property name="jobFactory">
-			<bean class="com.fastjava.quartz.JobFactory" />
+			<bean class="com.fastjavaframework.quartz.JobFactory" />
 		</property>
 	</bean>
 
 	<!-- 任务构建器 -->
-	<bean id="scheduleJob" class="com.fastjava.quartz.ScheduleJob">
+	<bean id="scheduleJob" class="com.fastjavaframework.quartz.ScheduleJob">
 		<property name="scheduler" ref="scheduler" />
 		<property name="log" value="false" /> <!-- 开启log -->
 		<property name="jobs">

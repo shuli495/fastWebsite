@@ -1,7 +1,7 @@
 package com.website.service;
 
-import com.fastjava.base.BaseService;
-import com.fastjava.exception.ThrowPrompt;
+import com.fastjavaframework.base.BaseService;
+import com.fastjavaframework.exception.ThrowPrompt;
 import com.website.dao.SysCodeDao;
 import com.website.model.bo.SysCodeBO;
 import org.springframework.stereotype.Service;

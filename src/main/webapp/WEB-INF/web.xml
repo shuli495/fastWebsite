@@ -51,7 +51,7 @@
 	
 	<servlet>
 		<servlet-name>fastJavaView</servlet-name>
-		<servlet-class>com.fastjava.Fastjava</servlet-class>
+		<servlet-class>com.fastjavaframework.Fastjava</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>fastJavaView</servlet-name>
