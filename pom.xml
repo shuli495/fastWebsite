@@ -8,6 +8,7 @@
 	<version>1.0.0-SNAPSHOT</version>
 
 	<properties>
+		<servlet.version>3.1-b02</servlet.version>
 		<spring-boot-starter-web.version>1.4.0.RELEASE</spring-boot-starter-web.version>
 		<mybatis-spring.version>1.2.3</mybatis-spring.version>
 		<druid.version>1.0.15</druid.version>
@@ -27,17 +28,26 @@
 	</repositories>
 
 	<dependencies>
-		<!-- 从本地关联fastjava代码，本地需要添加fastjava代码，与下个依赖二选一 -->
-		<!--<dependency>-->
-			<!--<groupId>com.fastjavaframework</groupId>-->
-			<!--<artifactId>fastjava</artifactId>-->
-		<!--</dependency>-->
-		<!-- 从git拉取fastjava代码，与上个依赖二选一 -->
+		<!-- 从本地关联fastjava代码(删除后手动输入)，本地需要添加fastjava代码，与下个依赖二选一 -->
 		<dependency>
-			<groupId>com.github.shuli495</groupId>
+			<groupId>com.fastjavaframework</groupId>
 			<artifactId>fastjava</artifactId>
-			<version>0.9.0</version>
 		</dependency>
+		<!-- 从git拉取fastjava代码，与上个依赖二选一 -->
+		<!--<dependency>-->
+			<!--<groupId>com.github.shuli495</groupId>-->
+			<!--<artifactId>fastjava</artifactId>-->
+			<!--<version>0.9.0</version>-->
+		<!--</dependency>-->
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet.version}</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
