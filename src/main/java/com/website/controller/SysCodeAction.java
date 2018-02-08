@@ -1,4 +1,4 @@
-package com.website.action;
+package com.website.controller;
 
 import com.fastjavaframework.base.BaseAction;
 import com.fastjavaframework.exception.ThrowPrompt;
