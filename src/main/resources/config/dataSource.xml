@@ -16,7 +16,7 @@
 		init-method="init" destroy-method="close">
 		<!-- 数据连接信息 -->
 		<property name="url"
-			value="jdbc:log4jdbc:mysql://${ip}:${port}/${project}?allowMultiQueries=true" />
+			value="jdbc:mysql://${ip}:${port}/${project}?allowMultiQueries=true" />
 		<property name="username" value="${user}" />
 		<property name="password" value="${password}" />
 		<!-- 配置初始化大小、最小、最大 -->
@@ -39,6 +39,11 @@
 			value="20" />
 		<!-- 配置监控统计拦截的filters -->
 		<property name="filters" value="stat" />
+		<property name="proxyFilters">
+			<list>
+				<ref bean="log-filter"/>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -67,4 +72,12 @@
 		<jdbc:script encoding="utf-8" location="classpath:init/sysCode.sql" />
 		<jdbc:script encoding="utf-8" location="classpath:init/public.sql" />
 	</jdbc:initialize-database>
+
+	<!-- sql日志 -->
+	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+		<property name="connectionLogEnabled" value="false"/>
+		<property name="statementLogEnabled" value="false"/>
+		<property name="resultSetLogEnabled" value="true"/>
+		<property name="statementExecutableSqlLogEnable" value="true"/>
+	</bean>
 </beans>

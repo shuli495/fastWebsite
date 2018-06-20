@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration status="WARN" monitorInterval="30">
+	<appenders>
+		<!-- 控制台输出 -->
+		<!-- ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL < OFF -->
+		<console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%thread] [%p] %l : %m%n"/>
+		</console>
+		<!-- info级别文件输出 -->
+		<RollingFile name="RollingFileInfo"
+					 fileName="${web:rootDir}/logs/wsl-info.log"
+					 filePattern="${web:rootDir}/logs/history/wsl-info-%d{yyyy-MM-dd}-%i.log">
+			<ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] [%thread] %l : %m%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+			</Policies>
+		</RollingFile>
+		<!-- warn级别文件输出 -->
+		<RollingFile name="RollingFileWarn"
+					 fileName="${web:rootDir}/logs/warn.log"
+					 filePattern="${web:rootDir}/logs/history/warn-%d{yyyy-MM-dd}-%i.log">
+			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] [%thread] %l : %m%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+			</Policies>
+		</RollingFile>
+		<!-- err级别文件输出 -->
+		<RollingFile name="RollingFileError"
+					 fileName="${web:rootDir}/logs/error.log"
+					 filePattern="${web:rootDir}/logs/history/error-%d{yyyy-MM-dd}-%i.log">
+			<ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] [%thread] %l : %m%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+			</Policies>
+		</RollingFile>
+		<!-- quartz文件输出 -->
+		<RollingFile name="RollingFileQuartz"
+					 fileName="${web:rootDir}/logs/quartz.log"
+					 filePattern="${web:rootDir}/logs/history/quartz-%d{yyyy-MM-dd}-%i.log">
+			<ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] [%thread] %l : %m%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+			</Policies>
+		</RollingFile>
+	</appenders>
+
+	<loggers>
+		<!-- 过滤掉spring和mybatis的一些无用的DEBUG信息 -->
+		<logger name="org.springframework" level="INFO" />
+		<logger name="org.mybatis" level="INFO" />
+
+		<!-- sql日志 -->
+		<logger name="druid.sql.Statement" level="DEBUG" additivity="false">
+			<appender-ref ref="Console"/>
+		</logger>
+
+		<!-- quartz日志 -->
+		<logger name="com.fastjavaframework.quartz" level="INFO">
+			<appender-ref ref="RollingFileQuartz" />
+		</logger>
+
+		<root level="all">
+			<appender-ref ref="Console"/>
+			<appender-ref ref="RollingFileInfo"/>
+		</root>
+	</loggers>
+</configuration>

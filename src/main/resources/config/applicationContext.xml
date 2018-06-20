@@ -46,18 +46,6 @@
 	
 	<!-- 字典表
 	<bean class="com.fastjava.listener.SystemCode"></bean> -->
-	
-	<!-- log4j -->
-	<bean id="log4jInitialization"
-		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-		<property name="targetClass" value="org.springframework.util.Log4jConfigurer" />
-		<property name="targetMethod" value="initLogging" />
-		<property name="arguments">
-			<list>
-				<value>classpath:config/log4j.xml</value>
-			</list>
-		</property>
-	</bean>
 
 	<!-- 定时任务 -->
 	<import resource="classpath:config/quartz.xml" />
