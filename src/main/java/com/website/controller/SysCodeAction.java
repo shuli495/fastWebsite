@@ -1,6 +1,6 @@
 package com.website.controller;
 
-import com.fastjavaframework.base.BaseAction;
+import com.fastjavaframework.base.BaseController;
 import com.fastjavaframework.exception.ThrowPrompt;
 import com.fastjavaframework.util.UUID;
 import com.fastjavaframework.util.VerifyUtils;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value="/maSysCode")
-public class SysCodeAction extends BaseAction<SysCodeService> {
+public class SysCodeAction extends BaseController<SysCodeService> {
 
 	/**
 	 * 创建

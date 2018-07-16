@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.fastjavaframework.exception.ThrowPrompt;
-import com.fastjavaframework.util.MD5Util;
+import com.fastjavaframework.util.SecretUtil;
 
 /**
  * 上传文件监听
@@ -37,7 +37,7 @@ public class FileUploadListener extends CommonsMultipartResolver  {
 				if("file".equals(fileItem.getFieldName())) {
 					fileName = fileItem.getName();
 					try {
-						md5 = MD5Util.md5ByFile((FileInputStream)fileItem.getInputStream(), fileItem.getSize())
+						md5 = SecretUtil.md5ByFile((FileInputStream)fileItem.getInputStream(), fileItem.getSize())
 								+ "." + fileItem.getContentType().split("/")[1];
 					} catch (IOException e) {
 						md5 = fileItem.getName();
