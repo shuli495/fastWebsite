@@ -5,7 +5,7 @@ import com.website.model.bo.SysCodeBO;
 import org.springframework.stereotype.Repository;
 
 /**
- * sys_code dao
+ * @author wangshuli
  */
 @Repository
 public class SysCodeDao extends BaseDao<SysCodeBO> {

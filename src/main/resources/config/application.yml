@@ -1,0 +1,61 @@
+spring:
+  profiles:
+    active: dev
+
+server:
+  port: 8090
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/fastwebsite?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: 123456
+---
+spring:
+  profiles: pro
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/fastwebsite?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: 123456
+---
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.gif,*.png,*.jpg,*.html,*.js,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: true
+        login-username: admin
+        login-password: fastjava@2018
+      filter:
+        slf4j:
+          enabled: true
+          statement-log-enabled: false
+          connection-log-enabled: false
+          result-set-log-enabled: true
+          statement-executable-sql-log-enable: true
+
+logging:
+  config: classpath:config/log4j2.xml
+
+mybatis:
+  config-location: classpath:config/mybatis.xml
+  mapper-locations: classpath:sqlMapper/*.xml
+
+fastjava:
+  options-auhority: true
+  exception:
+    message: "系统异常，请稍后再试！"
+
+quartz:
+  start-delayed: 10
+  log-enabled: true
+  jobs:

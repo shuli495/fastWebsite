@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * sys_code service
+ * @author wangshuli
  */
 @Service
 public class SysCodeService extends BaseService<SysCodeDao,SysCodeBO> {
@@ -53,10 +53,12 @@ public class SysCodeService extends BaseService<SysCodeDao,SysCodeBO> {
 	 * @param id  当前结点id
 	 */
 	private void setDelIds(List<String> ids, String id) {
-		SysCodeBO SysCodeBO = new SysCodeBO();
-		SysCodeBO.setParentId(id);
-		
-		List<SysCodeBO> codeList = super.baseQueryByAnd(SysCodeBO);	//当前子节点列表
+		SysCodeBO sysCodeBO = new SysCodeBO();
+		sysCodeBO.setParentId(id);
+
+		//当前子节点列表
+		List<SysCodeBO> codeList = super.baseQueryByAnd(sysCodeBO);
+
 		for(SysCodeBO code : codeList) {
 			ids.add(code.getId());
 			

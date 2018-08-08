@@ -2,6 +2,7 @@ package com.website.controller;
 
 import com.fastjavaframework.base.BaseController;
 import com.fastjavaframework.exception.ThrowPrompt;
+import com.fastjavaframework.page.Page;
 import com.fastjavaframework.util.UUID;
 import com.fastjavaframework.util.VerifyUtils;
 import com.website.model.bo.SysCodeBO;
@@ -10,9 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 字典表
+ *
+ * @author wangshuli
+ */
 @RestController
-@RequestMapping(value="/maSysCode")
-public class SysCodeAction extends BaseController<SysCodeService> {
+@RequestMapping(value="/sysCode")
+public class SysCodeController extends BaseController<SysCodeService> {
 
 	/**
 	 * 创建
@@ -100,12 +106,12 @@ public class SysCodeAction extends BaseController<SysCodeService> {
 	 * 列表查询 and条件
 	 */
 	@RequestMapping(method=RequestMethod.GET)
-	public Object list(@RequestParam(value="parentId", required=false) String parentId,
-			@RequestParam(value="groupId", required=false) String groupId) {
+	public Object list(@RequestParam(required=false) String parentId,
+			@RequestParam(required=false) String groupId) {
 		SysCodeBO bo = new SysCodeBO();
 		bo.setParentId(parentId);
 		bo.setGroupId(groupId);
-		
+
 		return success(this.service.baseQueryByAnd(bo));
 	}
 

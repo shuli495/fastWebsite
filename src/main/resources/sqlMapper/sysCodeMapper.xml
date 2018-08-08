@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.website.dao.MaSysCodeDaoMapper">
-	<resultMap type="com.website.model.bo.MaSysCodeBO" id="maSysCodeBO">
+<mapper namespace="com.website.dao.SysCodeDaoMapper">
+	<resultMap type="com.website.model.bo.SysCodeBO" id="sysCodeBO">
 		<result column="ID" property="id" />
 		<result column="PARENT_ID" property="parentId" />
 		<result column="GROUP_ID" property="groupId" />
@@ -11,15 +11,15 @@
 		<result column="ENABLE" property="enable" />
 	</resultMap>
 
-	<insert id="insert" parameterType="com.website.model.bo.MaSysCodeBO" useGeneratedKeys="true" keyProperty="id">
-		INSERT ma_sys_code
+	<insert id="insert" parameterType="sysCodeBO" useGeneratedKeys="true" keyProperty="id">
+		INSERT code
 		(ID,PARENT_ID,GROUP_ID,CODE,VALUE,SQEUENCE,ENABLE)
 		VALUES
 		(#{id},#{parentId},#{groupId},#{code},#{value},#{sqeuence},#{enable})
 	</insert>
 
 	<insert id="insertBatch" parameterType="java.util.List">
-		INSERT ma_sys_code
+		INSERT code
 		(ID,PARENT_ID,GROUP_ID,CODE,VALUE,SQEUENCE,ENABLE)
 		VALUES
 		<foreach collection="list" item="item" index="index" separator=",">
@@ -27,8 +27,8 @@
 		</foreach>
 	</insert>
 
-	<update id="update" parameterType="com.website.model.bo.MaSysCodeBO">
-		UPDATE ma_sys_code
+	<update id="update" parameterType="sysCodeBO">
+		UPDATE code
 		<trim prefix="SET" suffixOverrides=",">
 			<if test="id != null">
 				ID=#{id},
@@ -57,7 +57,7 @@
 
 	<update id="updateBatch" parameterType="java.util.List">
 		<foreach collection="list" item="item" index="index" separator=";">
-			UPDATE ma_sys_code
+			UPDATE code
 			<trim prefix="SET" suffixOverrides=",">
 				<if test="id != null">
 					ID=#{item.id},
@@ -86,27 +86,27 @@
 	</update>
 
 	<delete id="delete" parameterType="String">
-		DELETE FROM ma_sys_code WHERE id=#{id}
+		DELETE FROM code WHERE id=#{id}
 	</delete>
 
 	<delete id="deleteBatch" parameterType="java.util.List">
-		DELETE FROM ma_sys_code WHERE id IN
+		DELETE FROM code WHERE id IN
 		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
 			#{item}
 		</foreach>
 	</delete>
 
-	<select id="findById" parameterType="String" resultType="maSysCodeBO">
+	<select id="findById" parameterType="String" resultType="sysCodeBO">
 		SELECT
 		ID,PARENT_ID as parentId,GROUP_ID as groupId,CODE,VALUE,SQEUENCE,ENABLE
-		FROM ma_sys_code
+		FROM code
 		WHERE id=#{id}
 	</select>
 
-	<select id="queryByOr" parameterType="com.website.model.bo.MaSysCodeBO" resultType="maSysCodeBO">
+	<select id="queryByOr" parameterType="sysCodeBO" resultType="sysCodeBO">
 		SELECT
 		ID,PARENT_ID as parentId,GROUP_ID as groupId,CODE,VALUE,SQEUENCE,ENABLE
-		FROM ma_sys_code
+		FROM code
 		<where>
 			<if test="id != null">
 				or ID=#{id}
@@ -132,10 +132,10 @@
 		</where>
 	</select>
 
-	<select id="queryByAnd" parameterType="com.website.model.bo.MaSysCodeBO" resultType="maSysCodeBO">
+	<select id="queryByAnd" parameterType="sysCodeBO" resultType="sysCodeBO">
 		SELECT
 		ID,PARENT_ID as parentId,GROUP_ID as groupId,CODE,VALUE,SQEUENCE,ENABLE
-		FROM ma_sys_code
+		FROM code
 		<where>
 			<if test="id != null">
 				and ID=#{id}

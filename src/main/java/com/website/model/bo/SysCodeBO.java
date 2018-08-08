@@ -1,10 +1,15 @@
 package com.website.model.bo;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.fastjavaframework.base.BaseBean;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
 
+/**
+ * @author wangshuli
+ */
 public class SysCodeBO extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -25,8 +30,15 @@ public class SysCodeBO extends BaseBean {
 	@Max(value=999999999, message="{ma_sys_code.sqeuence.max}")
 	private Integer sqeuence;	
 
-	private Boolean enable;	
+	private Boolean enable;
 
+	@Override
+	public String toString() {
+		JSONObject json = new JSONObject();
+		json.putAll((JSONObject)JSON.toJSON(this));
+		json.putAll(JSONObject.parseObject(super.toString()));
+		return json.toJSONString();
+	}
 
 	public String getId() {
 		return id;

@@ -1,22 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com</groupId>
-	<artifactId>fastWebsite</artifactId>
-	<packaging>war</packaging>
-	<version>1.0.1</version>
+	<artifactId>fastwebsite</artifactId>
+	<version>2.0.0</version>
 
-	<properties>
-		<servlet.version>3.1-b02</servlet.version>
-		<mybatis-spring.version>1.2.3</mybatis-spring.version>
-		<druid.version>1.0.15</druid.version>
-		<log4j.version>2.11.0</log4j.version>
-		<commons-fileupload.version>1.3.1</commons-fileupload.version>
+	<packaging>jar</packaging>
+	<name>${project.groupId}:${project.artifactId}</name>
+	<description>基于fastjava的spring boot项目</description>
 
-		<jdk.version>1.8</jdk.version>
-		<maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
-	</properties>
+	<scm>
+		<url>https://github.com/shuli495/fastWebsite</url>
+		<connection>scm:git:https://git@github.com/shuli495/fastWebsite.git</connection>
+	</scm>
+
+	<licenses>
+		<license>
+			<name>The MIT License</name>
+			<url>https://mit-license.org/</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>wangshuli</name>
+			<email>xiaoyao495@163.com</email>
+			<organization>free man</organization>
+			<organizationUrl>https://github.com/shuli495</organizationUrl>
+		</developer>
+	</developers>
+
+	<parent>
+		<!-- 从本地关联fastjava代码(删除后手动输入)，本地需要添加fastjava代码，与下个依赖二选一 -->
+		<!--<groupId>com.fastjavaframework</groupId>-->
+		<!--<artifactId>fastjava-parent</artifactId>-->
+		<!--<version>2.0.0</version>-->
+		<!--<relativePath>../fastjavaParent/pom.xml</relativePath>-->
+		<groupId>com.github.shuli495</groupId>
+		<artifactId>fastjava-parent</artifactId>
+		<version>2.0.0</version>
+	</parent>
 
 	<repositories>
 		<repository>
@@ -25,66 +50,35 @@
 		</repository>
 	</repositories>
 
+	<properties>
+        <quartz.version>2.3.0</quartz.version>
+	</properties>
+
 	<dependencies>
-		<!-- 从本地关联fastjava代码(删除后手动输入)，本地需要添加fastjava代码，与下个依赖二选一 -->
-		<!--<dependency>-->
-			<!--<groupId>com.fastjavaframework</groupId>-->
-			<!--<artifactId>fastjava</artifactId>-->
-		<!--</dependency>-->
-		<!-- 从git拉取fastjava代码，与上个依赖二选一 -->
 		<dependency>
-			<groupId>com.github.shuli495</groupId>
-			<artifactId>fastjava</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>${servlet.version}</version>
-			<type>jar</type>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>${druid.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-web</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>${commons-fileupload.version}</version>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>${quartz.version}</version>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
+				<!-- 制作镜像 mvn clean package dockerfile:build -->
+				<!-- 启动镜像 docker run -d -p 8090:8090 IMAGE_ID -->
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.3</version>
 				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
-					<encoding>UTF-8</encoding>
+					<repository>${project.groupId}/${project.artifactId}</repository>
+					<tag>${project.version}</tag>
+					<buildArgs>
+						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
