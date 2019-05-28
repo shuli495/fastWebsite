@@ -63,6 +63,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<!-- 制作镜像 mvn clean package dockerfile:build -->
