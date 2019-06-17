@@ -2,7 +2,6 @@ package com.website.controller;
 
 import com.fastjavaframework.base.BaseController;
 import com.fastjavaframework.exception.ThrowPrompt;
-import com.fastjavaframework.page.Page;
 import com.fastjavaframework.util.UUID;
 import com.fastjavaframework.util.VerifyUtils;
 import com.website.model.bo.SysCodeBO;

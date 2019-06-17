@@ -37,6 +37,7 @@ fastjava:
   options-auhority: true
   exception:
     message: "系统异常，请稍后再试！"
+    response-ok: true
 
 quartz:
   start-delayed: 10
