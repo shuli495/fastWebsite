@@ -38,6 +38,7 @@ fastjava:
   exception:
     message: "系统异常，请稍后再试！"
     response-ok: true
+    prompt-stack: true
 
 quartz:
   start-delayed: 10
